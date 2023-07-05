@@ -10,13 +10,14 @@ const generateExcuse = async () => {
 
   const chatCompletion = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
-    messages: [{ role: 'user', content: 'Can you give me an excuse to get out of an event?' }]
+    messages: [{ role: 'user', content: 'Can you give me an example of a fake excuse that no one would believe' }]
   });
 
   //console.log(chatCompletion.data.choices);
   console.log(chatCompletion.data.choices[0].message.content);
+  return chatCompletion.data.choices[0].message.content
 };
 
 generateExcuse();
 
-module.exports = generateExcuse();
+module.exports = generateExcuse;
