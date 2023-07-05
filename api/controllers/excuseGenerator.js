@@ -1,7 +1,8 @@
 require('dotenv').config();
 const { Configuration, OpenAIApi } = require('openai');
 
-const generateExcuse = async () => {
+const ExcuseController = {
+  generateExcuse: async (req, res) => {
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY
   });
@@ -15,9 +16,10 @@ const generateExcuse = async () => {
 
   //console.log(chatCompletion.data.choices);
   console.log(chatCompletion.data.choices[0].message.content);
-  return chatCompletion.data.choices[0].message.content
-};
+  return res.status(200).json({response: chatCompletion.data.choices[0].message.content})
+}
+}
 
-generateExcuse();
+//ExcuseController.generateExcuse();
 
-module.exports = generateExcuse;
+module.exports = ExcuseController;

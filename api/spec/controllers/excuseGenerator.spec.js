@@ -1,6 +1,8 @@
 //require('dotenv').config();
+const request = require('supertest');
 const { Configuration, OpenAIApi } = require('openai');
-const generateExcuse = require('../../controllers/excuseGenerator');
+const app = require('../../app');
+const ExcuseController = require('../../controllers/excuseGenerator');
 
 jest.mock('openai', () => ({
   Configuration: jest.fn(),
@@ -18,19 +20,14 @@ jest.mock('openai', () => ({
     })
   }))
 }));
-  
-describe('generateExcuse', () => {
-  beforeEach(() => {
-    Configuration.mockClear();
-    OpenAIApi.mockClear();
-  });
 
-  it('should generate an Excuse', async () => {
-    const result = await generateExcuse()
+describe('GET /excuse', () => {
+  it('should return an excuse', async () => {
+    const response = await request(app)
+      .get('/excuse');
 
-    expect(Configuration).toHaveBeenCalledTimes(1);
-    expect(OpenAIApi).toHaveBeenCalledTimes(1);
-    console.log(result); 
-    expect(result).toBe("I am late")
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ response: 'I am late' });
+    //expect(ExcuseController.generateExcuse).toHaveBeenCalledTimes(1);
   });
 });
