@@ -16,7 +16,7 @@ const ExcuseController = {
 
   //console.log(chatCompletion.data.choices);
   console.log(chatCompletion.data.choices[0].message.content);
-  return res.status(200).json({response: chatCompletion.data.choices[0].message.content})
+  return res.status(200).json({excuse: chatCompletion.data.choices[0].message.content})
 }
 }
 
