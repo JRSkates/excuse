@@ -10,12 +10,10 @@ describe('App', () => {
     const mockData = { excuse: "I am late"}
     axios.get.mockResolvedValue({ data: mockData })
 
-    // const { getByTestId, getByText } = render(<App />);
-
-    // fireEvent(getByTestId("generate-excuse-button"), 'press');
-    const { getByTestId, getByText } = render(<App />);
-
-    const generateExcuseButton = getByTestId('generate-excuse-button');
+    render(<App />);
+    console.log(screen)
+    const generateExcuseButton = screen.getByText('Generate excuse');
+    
     fireEvent.press(generateExcuseButton)
 
     const excuseText = await waitFor(() => getByText('I am late'));
