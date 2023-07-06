@@ -1,22 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import React from "react";
+// 1. import `NativeBaseProvider` component
+import { ImageBackground, StyleSheet, View } from "react-native";
+import { NativeBaseProvider, Text, Box, Button } from "native-base";
 
 export default function App() {
+  // 2. Use at the root of your app
   return (
-    <>
-      <ImageBackground 
-        source={require('./assets/background.jpg')}
+    <NativeBaseProvider>
+      <ImageBackground
+        source={require('./assets/background.png')}
         style={styles.backgroundImage}
         >
-        <View style={styles.container}>
-          <Text style={styles.text}>Excuse</Text>
-          <StatusBar backgroundColor="white" barStyle="dark-content" /> 
-        <View>
-          <Button title="Generate excuse" />
-        </View>
-        </View>
+          <View style={styles.container}>
+            {/* <Box flex={1} bg="#fff" alignItems="center" justifyContent="center">
+            </Box> */}
+              <Button>Generate excuse</Button>
+          </View>
       </ImageBackground>
-    </>
+    </NativeBaseProvider>
   );
 }
 
@@ -28,12 +30,6 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover',    
-  },
-  text: {
-    color: 'white'
+    resizeMode: 'cover',
   }
 });
-
-
-
