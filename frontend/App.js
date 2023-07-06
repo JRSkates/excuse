@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View, StatusBar } from "react-native";
 import { NativeBaseProvider, Text, Button } from "native-base";
 
 export default function App() {
@@ -10,6 +9,7 @@ export default function App() {
         source={require('./assets/background.png')}
         style={styles.backgroundImage}
         >
+          <StatusBar backgroundColor='black' barStyle="light-content"/>
           <View style={styles.container}>
               <Button>Generate excuse</Button>
           </View>
