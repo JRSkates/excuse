@@ -27,7 +27,7 @@ describe('GET /excuse', () => {
       .get('/excuse');
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ response: 'I am late' });
+    expect(response.body).toEqual({ excuse: 'I am late' });
     //expect(ExcuseController.generateExcuse).toHaveBeenCalledTimes(1);
   });
 });
