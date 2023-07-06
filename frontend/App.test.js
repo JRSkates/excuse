@@ -1,6 +1,6 @@
 import App from './App' ;
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react-native';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react-native';
 import axios from 'axios';
 
 jest.mock('axios')
@@ -10,9 +10,13 @@ describe('App', () => {
     const mockData = { excuse: "I am late"}
     axios.get.mockResolvedValue({ data: mockData })
 
-    const { getByText } = render(<App />);
+    // const { getByTestId, getByText } = render(<App />);
 
-    fireEvent.press(getByText("Generate excuse"));
+    // fireEvent(getByTestId("generate-excuse-button"), 'press');
+    const { getByTestId, getByText } = render(<App />);
+
+    const generateExcuseButton = getByTestId('generate-excuse-button');
+    fireEvent.press(generateExcuseButton)
 
     const excuseText = await waitFor(() => getByText('I am late'));
     expect(excuseText).toEqual("I am late");

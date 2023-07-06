@@ -11,7 +11,7 @@ export default function App() {
         >
           <StatusBar backgroundColor='black' barStyle="light-content"/>
           <View style={styles.container}>
-              <Button>Generate excuse</Button>
+              <Button testID="generate-excuse-button">Generate excuse</Button>
           </View>
       </ImageBackground>
     </NativeBaseProvider>
