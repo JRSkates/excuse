@@ -25,9 +25,11 @@ export default function App() {
         style={styles.backgroundImage}
         >
           <StatusBar backgroundColor='black' barStyle="light-content"/>
+          <View style={styles.excuseView}>
+            <Text style={styles.excuseText}>{excuse}</Text>
+          </View>
           <View style={styles.container}>
               <Button testID="generate-excuse-button" onPress={generateExcuse}>Generate excuse</Button>
-              <Text style={styles.excuse}>{excuse}</Text>
           </View>
       </ImageBackground>
     </NativeBaseProvider>
@@ -44,7 +46,14 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
-  excuse: {
-    
+  excuseView: {
+    marginTop: '50%',
+    marginLeft: '20%',
+    marginRight: '20%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  excuseText: {
+    color: 'white',
   }
 });
