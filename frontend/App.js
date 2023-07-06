@@ -8,8 +8,9 @@ export default function App() {
 
   const generateExcuse = async () => {
     try {
-      const response = await axios.get('localhost:3000/excuse')
+      const response = await axios.get('http://localhost:3000/excuse')
       const data = response.data;
+      console.log(response)
 
       setExcuse(data.excuse);
     } catch(error) {
@@ -26,7 +27,7 @@ export default function App() {
           <StatusBar backgroundColor='black' barStyle="light-content"/>
           <View style={styles.container}>
               <Button testID="generate-excuse-button" onPress={generateExcuse}>Generate excuse</Button>
-              <Text>{excuse}</Text>
+              <Text style={styles.excuse}>{excuse}</Text>
           </View>
       </ImageBackground>
     </NativeBaseProvider>
@@ -42,5 +43,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
+  },
+  excuse: {
+    
   }
 });
