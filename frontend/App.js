@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export default function App() {
   const [excuse, setExcuse] = useState('')
+  const [typeInput, setTypeInput] = useState('')
 
   const generateExcuse = async () => {
     try {
@@ -19,6 +20,10 @@ export default function App() {
     }
   }
 
+  const handleTextInputChange = (typeInput) => {
+    setTypeInput(typeInput);
+  }
+
   return (
     <NativeBaseProvider >
       <ImageBackground
@@ -31,7 +36,10 @@ export default function App() {
           </View>
           <Box alignItems='center'>
             <Text flex='1' color='white'>Please describe the event you need to get out of:</Text>
-            <Input flex='1' mx="auto" placeholder="Input" w="50%" accessibilityLabel="Excuse type input field"></Input>
+            <Input color='white' flex='1' mx="auto" placeholder="Input" w="50%" accessibilityLabel="Excuse type input field"
+            onChangeText={handleTextInputChange}
+            defaultValue={typeInput}
+            />
           </Box>
           <View style={styles.container}>
               <Button onPress={generateExcuse}>Generate Excuse</Button>
@@ -40,6 +48,11 @@ export default function App() {
     </NativeBaseProvider>
   );
 }
+
+// onChangeText={newText => setText(newText)}
+// defaultValue={text}
+
+
 
 const styles = StyleSheet.create({
   container: {
