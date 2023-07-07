@@ -8,7 +8,8 @@ export default function App() {
 
   const generateExcuse = async () => {
     try {
-      const response = await axios.get(`url here`)
+      console.log('click')
+      const response = await axios.get(`https://excuse-s1se.onrender.com/excuse`)
       const data = response.data;
       console.log(response)
 
