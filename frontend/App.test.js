@@ -30,8 +30,9 @@ describe("App", () => {
     expect(inputField).toBeTruthy();
   });
 
-  it("given some input, it should include that input in the body of the request when the button is pressed", () => {
+  it("given some input, it should include that input in the body of the request when the button is pressed", async () => {
     render(<App />);
+
     const inputField = screen.getByLabelText("Excuse type input field");
     const generateExcuseButton = screen.getByText("Generate Excuse");
     // inputs text
@@ -39,7 +40,7 @@ describe("App", () => {
     // presses button
     fireEvent.press(generateExcuseButton);
 
-    // check that the request is called with the input
+    expect(axios.get).toHaveBeenLastCalledWith('https://excuse-s1se.onrender.com/excuse', {eventType: 'my sons birthday'})
   });
 
   xit("it clears the input field on button press", () => {

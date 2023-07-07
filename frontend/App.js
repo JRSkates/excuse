@@ -10,7 +10,7 @@ export default function App() {
   const generateExcuse = async () => {
     try {
       console.log('click')
-      const response = await axios.get(`https://excuse-s1se.onrender.com/excuse`)
+      const response = await axios.get(`https://excuse-s1se.onrender.com/excuse`, {eventType: typeInput})
       const data = response.data;
       console.log(response)
 
@@ -35,7 +35,7 @@ export default function App() {
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
           <Box alignItems='center'>
-            <Text flex='1' color='white'>Please describe the event you need to get out of:</Text>
+            <Text flex='1' color='white'>Have a specific event you need to get out of? Describe it below!</Text>
             <Input color='white' flex='1' mx="auto" placeholder="Input" w="50%" accessibilityLabel="Excuse type input field"
             onChangeText={handleTextInputChange}
             defaultValue={typeInput}
@@ -48,11 +48,6 @@ export default function App() {
     </NativeBaseProvider>
   );
 }
-
-// onChangeText={newText => setText(newText)}
-// defaultValue={text}
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -76,4 +71,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
