@@ -20,17 +20,18 @@ export default function App() {
   }
 
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider >
       <ImageBackground
         source={require('./assets/background.png')}
         style={styles.backgroundImage}
         >
           <StatusBar backgroundColor='black' barStyle="light-content"/>
           <View style={styles.excuseView}>
-            <Text style={styles.excuseText}>{excuse}</Text>
+            <Text style={styles.excuseText}></Text>
           </View>
-          <Box>
-            <Input accessibilityLabel="Excuse type input field"></Input>
+          <Box alignItems='center'>
+            <Text flex='1' color='white'>Please describe the event you need to get out of:</Text>
+            <Input flex='1' mx="auto" placeholder="Input" w="50%" accessibilityLabel="Excuse type input field"></Input>
           </Box>
           <View style={styles.container}>
               <Button onPress={generateExcuse}>Generate Excuse</Button>
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   excuseView: {
+    flex: 1,
     marginTop: '50%',
     marginLeft: '20%',
     marginRight: '20%',
@@ -59,5 +61,6 @@ const styles = StyleSheet.create({
   },
   excuseText: {
     color: 'white',
-  }
+  },
 });
+
