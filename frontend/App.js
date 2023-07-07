@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ImageBackground, StyleSheet, View, StatusBar } from "react-native";
-import { NativeBaseProvider, Text, Button } from "native-base";
+import { NativeBaseProvider, Text, Button, Input, Box } from "native-base";
 import axios from 'axios';
 
 export default function App() {
@@ -29,6 +29,9 @@ export default function App() {
           <View style={styles.excuseView}>
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
+          <Box>
+            <Input accessibilityLabel="Excuse type input field"></Input>
+          </Box>
           <View style={styles.container}>
               <Button onPress={generateExcuse}>Generate Excuse</Button>
           </View>
