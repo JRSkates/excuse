@@ -16,6 +16,7 @@ export default function App() {
       setExcuse(data.excuse);
     } catch(error) {
       console.log(error);
+      setExcuse('Excuse Generator is sick of your lies right now, try again shortly...')
     }
   }
 
