@@ -11,13 +11,11 @@ describe('App', () => {
     axios.get.mockResolvedValue({ data: mockData })
 
     render(<App />);
-    console.log(screen)
-    const generateExcuseButton = screen.getByText('Generate excuse');
+    const generateExcuseButton = screen.getByText('Generate Excuse');
     
     fireEvent.press(generateExcuseButton)
 
-    const excuseText = await waitFor(() => getByText('I am late'));
-    expect(excuseText).toEqual("I am late");
+    const excuseText = await waitFor(() => screen.getByText('I am late'));
     expect(excuseText).toBeTruthy();
   })    
 })

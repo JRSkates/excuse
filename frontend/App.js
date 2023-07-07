@@ -30,7 +30,7 @@ export default function App() {
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
           <View style={styles.container}>
-              <Button testID="generate-excuse-button" onPress={generateExcuse}>Generate excuse</Button>
+              <Button onPress={generateExcuse}>Generate Excuse</Button>
           </View>
       </ImageBackground>
     </NativeBaseProvider>
