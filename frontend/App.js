@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { ImageBackground, StyleSheet, View, StatusBar } from "react-native";
 import { NativeBaseProvider, Text, Button } from "native-base";
 import axios from 'axios';
-import { IP } from '@env';
 
 export default function App() {
   const [excuse, setExcuse] = useState('')
 
   const generateExcuse = async () => {
     try {
-      const response = await axios.get(`${IP}/excuse`)
+      console.log('click')
+      const response = await axios.get(`https://excuse-s1se.onrender.com/excuse`)
       const data = response.data;
       console.log(response)
 

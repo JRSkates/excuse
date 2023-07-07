@@ -28,8 +28,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@testing-library/jest-native": "^5.4.2",
-    "@testing-library/react-native": "^12.1.2",
-    "react-native-dotenv": "^3.4.9"
+    "@testing-library/react-native": "^12.1.2"
   },
   "private": true
 }
