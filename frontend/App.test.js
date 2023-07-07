@@ -29,4 +29,20 @@ describe("App", () => {
 
     expect(inputField).toBeTruthy();
   });
+
+  it("given some input, it should include that input in the body of the request when the button is pressed", () => {
+    render(<App />);
+    const inputField = screen.getByLabelText("Excuse type input field");
+    const generateExcuseButton = screen.getByText("Generate Excuse");
+    // inputs text
+    fireEvent.changeText(inputField, 'my sons birthday');
+    // presses button
+    fireEvent.press(generateExcuseButton);
+
+    // check that the request is called with the input
+  });
+
+  xit("it clears the input field on button press", () => {
+    // to be written
+  });
 });
