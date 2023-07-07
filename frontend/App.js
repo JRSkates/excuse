@@ -27,7 +27,7 @@ export default function App() {
         >
           <StatusBar backgroundColor='black' barStyle="light-content"/>
           <View style={styles.excuseView}>
-            <Text style={styles.excuseText}></Text>
+            <Text style={styles.excuseText}>{excuse}</Text>
           </View>
           <Box alignItems='center'>
             <Text flex='1' color='white'>Please describe the event you need to get out of:</Text>
