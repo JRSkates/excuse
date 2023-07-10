@@ -21,6 +21,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
+      },
+      "splash": {
+        "backgroundColor": "#000000"
       }
     },
     "web": {
