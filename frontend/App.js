@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, View, StatusBar, Share, KeyboardAvoidingView } from "react-native";
+import { ImageBackground, StyleSheet, View, StatusBar, Share, KeyboardAvoidingView, ScrollView } from "react-native";
 import { NativeBaseProvider, Text, Button, Input, Box } from "native-base";
 import axios from 'axios';
 
@@ -48,29 +48,31 @@ export default function App() {
         style={styles.backgroundImage}
       >
         <StatusBar backgroundColor='black' barStyle="light-content"/>
-        <KeyboardAvoidingView style={styles.container} behavior="position">
-          <View style={styles.excuseView}>
-            <Text style={styles.excuseText}>{excuse}</Text>
-          </View>
-          {excuseGenerated && (
-            <View style={styles.container}>
-              <Button onPress={shareExcuse}>
-                Share
-              </Button>
+        <ScrollView>
+          <KeyboardAvoidingView style={styles.container} behavior="position">
+            <View style={styles.excuseView}>
+              <Text style={styles.excuseText}>{"one".repeat(200)}</Text>
             </View>
-          )}
-          <Box style={styles.inputBox}>
-            <Text color='white'>Have a specific event you need to get out of? Describe it below!</Text>
-            <Input
-              color='white'
-              placeholder="Type here..."
-              accessibilityLabel="Excuse type input field"
-              onChangeText={handleTextInputChange}
-              defaultValue={typeInput}
-            />
-            <Button onPress={generateExcuse}>Generate Excuse</Button>
-          </Box>
-        </KeyboardAvoidingView>
+            {excuseGenerated && (
+              <View style={styles.container}>
+                <Button onPress={shareExcuse}>
+                  Share
+                </Button>
+              </View>
+            )}
+            <Box style={styles.inputBox}>
+              <Text color='white'>Have a specific event you need to get out of? Describe it below!</Text>
+              <Input
+                color='white'
+                placeholder="Type here..."
+                accessibilityLabel="Excuse type input field"
+                onChangeText={handleTextInputChange}
+                defaultValue={typeInput}
+              />
+              <Button onPress={generateExcuse}>Generate Excuse</Button>
+            </Box>
+          </KeyboardAvoidingView>
+        </ScrollView>
       </ImageBackground>
     </NativeBaseProvider>
   );
@@ -78,7 +80,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   excuseView: {
-    flex: 1,
+
     marginTop: '50%',
     marginLeft: '20%',
     marginRight: '20%',
@@ -95,7 +97,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   inputBox: {
-    flex: 1,
     marginTop: '50%',
     marginLeft: '20%',
     marginRight: '20%',
