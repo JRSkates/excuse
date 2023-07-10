@@ -22,7 +22,20 @@ describe("App", () => {
 
     const excuseText = await waitFor(() => screen.getByText("I am late"));
     expect(excuseText).toBeTruthy();
-  });
+  })
+
+  it('should return a message if there is an API error', async () => {
+    axios.get.mockRejectedValueOnce(new Error('Excuse Generator is sick of your lies right now, try again shortly...'));
+
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    
+    fireEvent.press(generateExcuseButton)
+
+    const errorMessage = await waitFor(() => screen.getByText('Excuse Generator is sick of your lies right now, try again shortly...'));
+    expect(errorMessage).toBeTruthy();
+  })
+
   it("should have an input field", () => {
     render(<App />);
     const inputField = screen.getByLabelText("Excuse type input field");
