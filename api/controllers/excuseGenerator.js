@@ -11,7 +11,7 @@ const ExcuseController = {
     const openai = new OpenAIApi(configuration);
     const chatCompletion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: 'Can you give me an example of a fake excuse that no one would believe' }]
+      messages: [{ role: 'user', content: `Can you return the following phrase: ${req.query}` }]
     });
     
     console.log(chatCompletion.data.choices[0].message.content);
@@ -26,3 +26,7 @@ const ExcuseController = {
 //ExcuseController.generateExcuse();
 
 module.exports = ExcuseController;
+
+// original prompt:
+
+// Can you give me an example of a fake excuse that no one would believe
