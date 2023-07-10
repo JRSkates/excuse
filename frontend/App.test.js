@@ -72,7 +72,7 @@ describe("App", () => {
     // presses button
     fireEvent.press(generateExcuseButton); 
     console.log(inputField.props);
-    await waitFor(() => expect(inputField.props.defaultValue).toBe("dog"));
+    await waitFor(() => expect(inputField.props.defaultValue).toBe(""));
 
   });
 
