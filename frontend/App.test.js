@@ -62,18 +62,18 @@ describe("App", () => {
     })
   });
 
-  xit("it clears the input field on button press", () => {
-    // render(<App />);
+  it("it clears the input field on button press", async () => {
+    render(<App />);
 
-    // const inputField = screen.getByLabelText("Excuse type input field");
-    // const generateExcuseButton = screen.getByText("Generate Excuse");
-    // // inputs text
-    // fireEvent.changeText(inputField, 'my sons birthday');
-    // // presses button
-    // fireEvent.press(generateExcuseButton); 
-    // console.log(inputField);
-    // expect(inputField).toBe("");
-    // needs work
+    const inputField = screen.getByLabelText("Excuse type input field");
+    const generateExcuseButton = screen.getByText("Generate Excuse");
+    // inputs text
+    fireEvent.changeText(inputField, 'my sons birthday');
+    // presses button
+    fireEvent.press(generateExcuseButton); 
+    console.log(inputField.props);
+    await waitFor(() => expect(inputField.props.defaultValue).toBe("dog"));
+
   });
 
   it('should display the share button after an excuse is generated', async () => {
