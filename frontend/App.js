@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, View, StatusBar } from "react-native";
+import { ImageBackground, StyleSheet, View, StatusBar, KeyboardAvoidingView } from "react-native";
 import { NativeBaseProvider, Text, Button, Input, Box } from "native-base";
 import axios from 'axios';
 
@@ -34,9 +34,9 @@ export default function App() {
           <View style={styles.excuseView}>
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
-          <Box alignItems='center'>
-            <Text flex='1' color='white'>Have a specific event you need to get out of? Describe it below!</Text>
-            <Input color='white' flex='1' mx="auto" placeholder="Input" w="50%" accessibilityLabel="Excuse type input field"
+          <Box style={styles.inputBox}>
+            <Text color='white'>Have a specific event you need to get out of? Describe it below!</Text>
+            <Input color='white' placeholder="Type here..." accessibilityLabel="Excuse type input field"
             onChangeText={handleTextInputChange}
             defaultValue={typeInput}
             />
@@ -67,7 +67,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  inputBox: {
+    flex: 1,
+    marginTop: '50%',
+    marginLeft: '20%',
+    marginRight: '20%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   excuseText: {
     color: 'white',
   },
 });
+
+//TODO: fix styling so elements don't overlap when keyboard is open, and have more space in between them
