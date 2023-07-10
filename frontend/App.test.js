@@ -53,10 +53,25 @@ describe("App", () => {
     // presses button
     fireEvent.press(generateExcuseButton);
 
-    expect(axios.get).toHaveBeenLastCalledWith('https://excuse-s1se.onrender.com/excuse', {eventType: 'my sons birthday'})
+    expect(axios.get).toHaveBeenLastCalledWith('https://excuse-s1se.onrender.com/excuse', { 
+      params:{
+        eventType: 'my sons birthday'
+      }
+    })
   });
 
   xit("it clears the input field on button press", () => {
-    // to be written
+    // render(<App />);
+
+    // const inputField = screen.getByLabelText("Excuse type input field");
+    // const generateExcuseButton = screen.getByText("Generate Excuse");
+    // // inputs text
+    // fireEvent.changeText(inputField, 'my sons birthday');
+    // // presses button
+    // fireEvent.press(generateExcuseButton); 
+    // console.log(inputField);
+    // expect(inputField).toBe("");
+    // needs work
   });
+
 });

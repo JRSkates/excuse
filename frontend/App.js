@@ -10,15 +10,17 @@ export default function App() {
   const generateExcuse = async () => {
     try {
       console.log('click')
-      const response = await axios.get(`http://10.64.7.1:3000/excuse`, { 
+      const response = await axios.get(`https://excuse-s1se.onrender.com/excuse`, { 
         params:{
           eventType: typeInput
         }
       })
+      setTypeInput('');
       const data = response.data;
       // console.log(response)
 
       setExcuse(data.excuse);
+
     } catch(error) {
       console.log(error);
       setExcuse('Excuse Generator is sick of your lies right now, try again shortly...')
