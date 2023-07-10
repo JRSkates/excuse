@@ -51,7 +51,7 @@ export default function App() {
         <ScrollView>
           <KeyboardAvoidingView style={styles.container} behavior="position">
             <View style={styles.excuseView}>
-              <Text style={styles.excuseText}>{"one".repeat(200)}</Text>
+              <Text style={styles.excuseText}>{excuse}</Text>
             </View>
             {excuseGenerated && (
               <View style={styles.container}>
