@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
+    backgroundColor: "#000000"
   },
   excuseView: {
     marginTop: '50%',
