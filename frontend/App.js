@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, View, StatusBar, Share} from "react-native";
+import { ImageBackground, StyleSheet, View, StatusBar, Share, KeyboardAvoidingView } from "react-native";
 import { NativeBaseProvider, Text, Button, Input, Box } from "native-base";
 import axios from 'axios';
 
@@ -18,7 +18,6 @@ export default function App() {
       })
       setTypeInput('');
       const data = response.data;
-      // console.log(response)
 
       setExcuse(data.excuse);
       setExcuseGenerated(true);
@@ -27,6 +26,7 @@ export default function App() {
       setExcuse('Excuse Generator is sick of your lies right now, try again shortly...')
     }
   }
+
   const shareExcuse = async () => {
     try {
       await Share.share({
@@ -37,7 +37,7 @@ export default function App() {
     }
   }
 
-    const handleTextInputChange = (typeInput) => {
+  const handleTextInputChange = (typeInput) => {
     setTypeInput(typeInput);
   }
 
@@ -46,28 +46,31 @@ export default function App() {
       <ImageBackground
         source={require('./assets/background.png')}
         style={styles.backgroundImage}
-        >
-          <StatusBar backgroundColor='black' barStyle="light-content"/>
+      >
+        <StatusBar backgroundColor='black' barStyle="light-content"/>
+        <KeyboardAvoidingView style={styles.container} behavior="position">
           <View style={styles.excuseView}>
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
           {excuseGenerated && (
-          <View style={styles.container}>
-            <Button onPress={shareExcuse}>
-              Share
-            </Button>
-          </View>
-        )}
+            <View style={styles.container}>
+              <Button onPress={shareExcuse}>
+                Share
+              </Button>
+            </View>
+          )}
           <Box style={styles.inputBox}>
             <Text color='white'>Have a specific event you need to get out of? Describe it below!</Text>
-            <Input color='white' placeholder="Type here..." accessibilityLabel="Excuse type input field"
-            onChangeText={handleTextInputChange}
-            defaultValue={typeInput}
+            <Input
+              color='white'
+              placeholder="Type here..."
+              accessibilityLabel="Excuse type input field"
+              onChangeText={handleTextInputChange}
+              defaultValue={typeInput}
             />
+            <Button onPress={generateExcuse}>Generate Excuse</Button>
           </Box>
-          <View style={styles.container}>
-              <Button onPress={generateExcuse}>Generate Excuse</Button>
-          </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     </NativeBaseProvider>
   );
@@ -103,5 +106,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
-//TODO: fix styling so elements don't overlap when keyboard is open, and have more space in between them
