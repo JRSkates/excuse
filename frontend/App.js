@@ -43,7 +43,7 @@ export default function App() {
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
           {excuseGenerated && (
-          <View>
+          <View style={styles.container}>
             <Button onPress={shareExcuse}>
               Share
             </Button>
