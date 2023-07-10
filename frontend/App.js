@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, View, StatusBar, KeyboardAvoidingView } from "react-native";
+import { ImageBackground, StyleSheet, View, StatusBar, Share} from "react-native";
 import { NativeBaseProvider, Text, Button, Input, Box } from "native-base";
 import axios from 'axios';
 
 export default function App() {
   const [excuse, setExcuse] = useState('')
+  const [excuseGenerated, setExcuseGenerated] = useState(false);
   const [typeInput, setTypeInput] = useState('')
 
   const generateExcuse = async () => {
@@ -20,14 +21,23 @@ export default function App() {
       // console.log(response)
 
       setExcuse(data.excuse);
-
+      setExcuseGenerated(true);
     } catch(error) {
       console.log(error);
       setExcuse('Excuse Generator is sick of your lies right now, try again shortly...')
     }
   }
+  const shareExcuse = async () => {
+    try {
+      await Share.share({
+        message: excuse
+      })
+    } catch(error) {
+      console.log(error);
+    }
+  }
 
-  const handleTextInputChange = (typeInput) => {
+    const handleTextInputChange = (typeInput) => {
     setTypeInput(typeInput);
   }
 
@@ -41,6 +51,13 @@ export default function App() {
           <View style={styles.excuseView}>
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
+          {excuseGenerated && (
+          <View style={styles.container}>
+            <Button onPress={shareExcuse}>
+              Share
+            </Button>
+          </View>
+        )}
           <Box style={styles.inputBox}>
             <Text color='white'>Have a specific event you need to get out of? Describe it below!</Text>
             <Input color='white' placeholder="Type here..." accessibilityLabel="Excuse type input field"
