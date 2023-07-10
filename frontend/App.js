@@ -80,22 +80,24 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
+    backgroundColor: "black"
   },
-  excuseView: {
 
+  excuseView: {
     marginTop: '50%',
     marginLeft: '20%',
     marginRight: '20%',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   inputBox: {
     marginTop: '50%',
     marginLeft: '20%',
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
   excuseText: {
     color: 'white',
   },
