@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, View, StatusBar } from "react-native";
+import { ImageBackground, StyleSheet, View, StatusBar, Share} from "react-native";
 import { NativeBaseProvider, Text, Button } from "native-base";
 import axios from 'axios';
 
 export default function App() {
   const [excuse, setExcuse] = useState('')
+  const [excuseGenerated, setExcuseGenerated] = useState(false);
 
   const generateExcuse = async () => {
     try {
@@ -14,9 +15,20 @@ export default function App() {
       console.log(response)
 
       setExcuse(data.excuse);
+      setExcuseGenerated(true);
     } catch(error) {
       console.log(error);
       setExcuse('Excuse Generator is sick of your lies right now, try again shortly...')
+    }
+  }
+
+  const shareExcuse = async () => {
+    try {
+      await Share.share({
+        message: excuse
+      })
+    } catch(error) {
+      console.log(error);
     }
   }
 
@@ -30,6 +42,13 @@ export default function App() {
           <View style={styles.excuseView}>
             <Text style={styles.excuseText}>{excuse}</Text>
           </View>
+          {excuseGenerated && (
+          <View style={styles.container}>
+            <Button onPress={shareExcuse}>
+              Share
+            </Button>
+          </View>
+        )}
           <View style={styles.container}>
               <Button onPress={generateExcuse}>Generate Excuse</Button>
           </View>
