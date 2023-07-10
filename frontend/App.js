@@ -11,7 +11,7 @@ export default function App() {
   const generateExcuse = async () => {
     try {
       console.log('click')
-      const response = await axios.get(`http://10.64.7.82:3000/excuse`, { 
+      const response = await axios.get(`https://excuse-s1se.onrender.com/excuse`, { 
         params:{
           eventType: typeInput
         }
