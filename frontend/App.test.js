@@ -1,5 +1,7 @@
 import App from './App' ;
 import React from 'react';
+import { jest } from '@jest/globals';
+import { Share } from "react-native";
 import { render, fireEvent, screen, waitFor } from '@testing-library/react-native';
 import axios from 'axios';
 
@@ -30,4 +32,44 @@ describe('App', () => {
     const errorMessage = await waitFor(() => screen.getByText('Excuse Generator is sick of your lies right now, try again shortly...'));
     expect(errorMessage).toBeTruthy();
   })
+
+  it('should display the share button after an excuse is generated', async () => {
+    const mockData = { excuse: "I am late"}
+    axios.get.mockResolvedValue({ data: mockData })
+
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    
+    fireEvent.press(generateExcuseButton)
+    await waitFor(() => screen.getByText('I am late'));
+
+    const shareButton = screen.getByText('Share');
+
+    expect(shareButton).toBeTruthy();
+
+  });
+
+  it('should allow the user to share an excuse', async () => {
+    const mockData = { excuse: "I am late" };
+    axios.get.mockResolvedValue({ data: mockData });
+  
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+  
+    fireEvent.press(generateExcuseButton);
+    await waitFor(() => screen.getByText('I am late'));
+  
+    const shareButton = screen.getByText('Share');
+  
+    const shareSpy = jest.spyOn(Share, 'share');
+  
+    fireEvent.press(shareButton);
+  
+    expect(shareSpy).toHaveBeenCalled();
+    expect(shareSpy).toHaveBeenCalledWith({
+      message: 'I am late',
+    });
+  
+    shareSpy.mockRestore();
+  });
 })
