@@ -91,7 +91,7 @@ describe("App", () => {
     expect(shareButton).toBeTruthy();
 
   });
-
+  
   it('should allow the user to share an excuse', async () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
@@ -115,5 +115,22 @@ describe("App", () => {
   
     shareSpy.mockRestore();
   });
+  
+  it('should display the copy button after an excuse is generated', async () => {
+    const mockData = { excuse: "I am late"}
+    axios.get.mockResolvedValue({ data: mockData })
+
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    
+    fireEvent.press(generateExcuseButton)
+    await waitFor(() => screen.getByText('I am late'));
+
+    const copyButton = screen.getByText('Copy');
+
+    expect(copyButton).toBeTruthy();
+
+  });
+
   
 });

@@ -58,6 +58,9 @@ export default function App() {
                 <Button onPress={shareExcuse}>
                   Share
                 </Button>
+                <Button>
+                  Copy
+                </Button>
               </View>
             )}
             <Box style={styles.inputBox}>
