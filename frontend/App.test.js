@@ -153,9 +153,12 @@ describe("App", () => {
     await waitFor(() => screen.getByText('I am late'));
   
     const copyButton = screen.getByText('Copy');
-    // press copy buttion
+
     fireEvent.press(copyButton);
 
     expect(screen.getByText('Copied!')).toBeTruthy()
+
+    await waitFor(() => expect(screen.getByText('Copy')).toBeTruthy(), { timeout: 2500 });
+
     });
 });

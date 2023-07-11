@@ -65,6 +65,9 @@ export default function App() {
   const handleCopyButtonPress = () => {
     onCopy(excuse);
     setCopyButtonText('Copied!');
+    setTimeout(() => {
+      setCopyButtonText('Copy')
+  }, 2000);
   }
 
   return (
