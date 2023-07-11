@@ -58,7 +58,8 @@ describe("App", () => {
 
     expect(axios.get).toHaveBeenLastCalledWith('https://excuse-s1se.onrender.com/excuse', { 
       params:{
-        eventType: 'my sons birthday'
+        eventType: 'my sons birthday',
+        "toggle": false
       }
     })
   });
