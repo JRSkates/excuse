@@ -16,12 +16,10 @@ export default function App() {
   const [excuseGenerated, setExcuseGenerated] = useState(false);
   const [typeInput, setTypeInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const generateExcuse = async () => {
     try {
       setIsLoading(true);
-      setButtonDisabled(true);
 
       console.log("click");
       const response = await axios.get(
