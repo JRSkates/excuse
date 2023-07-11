@@ -142,10 +142,10 @@ describe("App", () => {
 
   });
 
-  it('should allow the user to share an excuse', async () => {
+  it('should copy the excuse to clipboard using useClipboard', async () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
-  
+
     render(<App />);
     const generateExcuseButton = screen.getByText('Generate Excuse');
   
@@ -155,16 +155,7 @@ describe("App", () => {
     const copyButton = screen.getByText('Copy');
     // press copy buttion
     fireEvent.press(copyButton);
-    // check things?
-    
-    // const shareSpy = jest.spyOn(Share, 'share');
-  
-  
-    // expect(shareSpy).toHaveBeenCalled();
-    // expect(shareSpy).toHaveBeenCalledWith({
-    //   message: 'I am late',
-    // });
-  
-    // shareSpy.mockRestore();
-  });
+
+    expect(screen.getByText('Copied!')).toBeTruthy()
+    });
 });

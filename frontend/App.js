@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native";
-import { NativeBaseProvider, Text, Button, Input, Box } from "native-base";
+import { NativeBaseProvider, Text, Button, Input, Box, useClipboard } from "native-base";
 import axios from "axios";
 
 export default function App() {
@@ -16,6 +16,9 @@ export default function App() {
   const [excuseGenerated, setExcuseGenerated] = useState(false);
   const [typeInput, setTypeInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [copyButtonText, setCopyButtonText] = useState('Copy')
+  const { onCopy } = useClipboard();
+
 
   const generateExcuse = async () => {
     try {
@@ -59,6 +62,11 @@ export default function App() {
     setTypeInput(typeInput);
   };
 
+  const handleCopyButtonPress = () => {
+    onCopy(excuse);
+    setCopyButtonText('Copied!');
+  }
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -74,8 +82,8 @@ export default function App() {
             {excuseGenerated && (
               <View style={styles.container}>
                 <Button onPress={shareExcuse}>Share</Button>
-                <Button>
-                  Copy
+                <Button onPress={handleCopyButtonPress}>
+                  {copyButtonText}
                 </Button>
               </View>
             )}
