@@ -91,7 +91,7 @@ describe("App", () => {
     expect(shareButton).toBeTruthy();
 
   });
-
+  
   it('should allow the user to share an excuse', async () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
@@ -115,7 +115,6 @@ describe("App", () => {
   
     shareSpy.mockRestore();
   });
-
   it('on press, button goes into loading state, and after the excuse loads, the original button is displayed again', async () => {
     render(<App />);
     const generateExcuseButton = screen.getByText('Generate Excuse');
@@ -124,6 +123,42 @@ describe("App", () => {
     expect(screen.getByText("Submitting")).toBeTruthy();
 
     await waitFor(() => expect(screen.getByText("Generate Excuse")).toBeTruthy());
-  })
+  });
   
+
+  it('should display the copy button after an excuse is generated', async () => {
+    const mockData = { excuse: "I am late"}
+    axios.get.mockResolvedValue({ data: mockData })
+
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    
+    fireEvent.press(generateExcuseButton)
+    await waitFor(() => screen.getByText('I am late'));
+
+    const copyButton = screen.getByText('Copy');
+
+    expect(copyButton).toBeTruthy();
+
+  });
+
+  it('should copy the excuse to clipboard using useClipboard', async () => {
+    const mockData = { excuse: "I am late" };
+    axios.get.mockResolvedValue({ data: mockData });
+
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+  
+    fireEvent.press(generateExcuseButton);
+    await waitFor(() => screen.getByText('I am late'));
+  
+    const copyButton = screen.getByText('Copy');
+
+    fireEvent.press(copyButton);
+
+    expect(screen.getByText('Copied!')).toBeTruthy()
+
+    await waitFor(() => expect(screen.getByText('Copy')).toBeTruthy(), { timeout: 2500 });
+
+    });
 });
