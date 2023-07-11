@@ -8,7 +8,15 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native";
-import { NativeBaseProvider, Text, Button, Input, Box, useClipboard } from "native-base";
+import {
+  NativeBaseProvider,
+  Text,
+  Button,
+  Input,
+  Box,
+  useClipboard,
+  HStack,
+} from "native-base";
 import axios from "axios";
 
 export default function App() {
@@ -16,9 +24,8 @@ export default function App() {
   const [excuseGenerated, setExcuseGenerated] = useState(false);
   const [typeInput, setTypeInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [copyButtonText, setCopyButtonText] = useState('Copy')
+  const [copyButtonText, setCopyButtonText] = useState("Copy");
   const { onCopy } = useClipboard();
-
 
   const generateExcuse = async () => {
     try {
@@ -64,11 +71,11 @@ export default function App() {
 
   const handleCopyButtonPress = () => {
     onCopy(excuse);
-    setCopyButtonText('Copied!');
+    setCopyButtonText("Copied!");
     setTimeout(() => {
-      setCopyButtonText('Copy')
-  }, 2000);
-  }
+      setCopyButtonText("Copy");
+    }, 2000);
+  };
 
   return (
     <NativeBaseProvider>
@@ -84,10 +91,14 @@ export default function App() {
             </View>
             {excuseGenerated && (
               <View style={styles.container}>
-                <Button onPress={shareExcuse}>Share</Button>
-                <Button onPress={handleCopyButtonPress}>
-                  {copyButtonText}
-                </Button>
+                <HStack space={3}>
+                  <Button onPress={shareExcuse}>
+                    Share
+                  </Button>
+                  <Button onPress={handleCopyButtonPress}>
+                    {copyButtonText}
+                  </Button>
+                </HStack>
               </View>
             )}
             <Box style={styles.inputBox}>
@@ -101,7 +112,11 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
-              <Button onPress={generateExcuse} isLoading={isLoading} isLoadingText="Submitting">
+              <Button
+                onPress={generateExcuse}
+                isLoading={isLoading}
+                isLoadingText="Submitting"
+              >
                 Generate Excuse
               </Button>
             </Box>
