@@ -116,4 +116,22 @@ describe("App", () => {
     shareSpy.mockRestore();
   });
   
+  it('should toggle the toggle button', async () => {
+    const mockData = { excuse: "I am late"}
+    axios.get.mockResolvedValue({ data: mockData })
+
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    
+    fireEvent.press(generateExcuseButton)
+    await waitFor(() => screen.getByText('I am late'));
+
+    const toggleButton = screen.getByTestId('toggle');
+
+    fireEvent.press(toggleButton);
+
+    const isToggled = await waitFor(() => screen.getByTestId('toggle').props.checked);
+
+    expect(isToggled).toBeTruthy();
+  });
 });
