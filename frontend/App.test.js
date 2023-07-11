@@ -115,5 +115,13 @@ describe("App", () => {
   
     shareSpy.mockRestore();
   });
+
+  it('on press the button changes to loading state', () => {
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    fireEvent.press(generateExcuseButton);
+
+    expect(screen.getByText("Submitting")).toBeTruthy();
+  })
   
 });
