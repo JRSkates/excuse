@@ -14,7 +14,8 @@ export default function App() {
       console.log('click')
       const response = await axios.get(`https://excuse-s1se.onrender.com/excuse`, { 
         params:{
-          eventType: typeInput
+          eventType: typeInput,
+          toggle: switchState
         }
       })
       setTypeInput('');

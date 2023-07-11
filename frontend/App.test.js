@@ -132,8 +132,7 @@ describe("App", () => {
 
     fireEvent(toggleSwitch, 'onValueChange', true);
 
-    //console.log(toggleSwitch);
-    expect(toggleSwitch).toHaveBeenCalled();
+    expect(toggleSwitch.props.value).toBe(true);
 
 
   });

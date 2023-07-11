@@ -15,7 +15,7 @@ const ExcuseController = {
         { role: 'user', content: gptContent },
       ];
 
-      if (req.query.toggle === 'true') {
+      if (req.query.toggle === true) {
         const eonetResponse = await axios.get('https://eonet.sci.gsfc.nasa.gov/api/v3/events');
         const events = eonetResponse.data.events;
         const singleEvent = events[0].title;
