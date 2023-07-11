@@ -6,11 +6,12 @@ import {
   render,
   fireEvent,
   screen,
-  waitFor,
+  waitFor
 } from "@testing-library/react-native";
 import axios from "axios";
 
 jest.mock("axios");
+
 
 describe("App", () => {
   it("should return an excuse to the frontend when the button is pressed", async () => {
@@ -132,7 +133,7 @@ describe("App", () => {
     fireEvent(toggleSwitch, 'onValueChange', true);
 
     //console.log(toggleSwitch);
-    expect(toggleSwitch).toBe('test')
+    expect(toggleSwitch).toHaveBeenCalled();
 
 
   });

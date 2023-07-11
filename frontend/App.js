@@ -43,8 +43,12 @@ export default function App() {
   }
 
   const toggleSwitch = () => {
-    setSwitchState(!switchState)
-  }
+    if (switchState === false) {
+      setSwitchState(true);
+    } else {
+      setSwitchState(false);
+    }
+  };
 
   return (
     <NativeBaseProvider >
@@ -76,10 +80,18 @@ export default function App() {
               />
               <Button onPress={generateExcuse}>Generate Excuse</Button>
                 <Switch testID={'switch'}
-                  // trackColor={{false: '#767577', true: '#81b0ff'}}
-                  // thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-                  // ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
+                  value={switchState}
+                  disabled={false}
+                  activeText={'On'}
+                  inActiveText={'Off'}
+                  circleSize={30}
+                  barHeight={1}
+                  circleBorderWidth={3}
+                  backgroundActive={'green'}
+                  backgroundInactive={'gray'}
+                  circleActiveColor={'#30a566'}
+                  circleInActiveColor={'#000000'}
                 />
                
             </Box>
