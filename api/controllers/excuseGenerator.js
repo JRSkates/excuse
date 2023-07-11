@@ -15,12 +15,12 @@ const ExcuseController = {
         { role: 'user', content: gptContent },
       ];
 
-      if (req.query.toggle === true) {
-        const eonetResponse = await axios.get('https://eonet.sci.gsfc.nasa.gov/api/v3/events');
+      if (req.query.toggle === 'true') {
+        const eonetResponse = await axios.get('https://eonet.gsfc.nasa.gov/api/v3/events');
         const events = eonetResponse.data.events;
         const singleEvent = events[0].title;
-        console.log(eonetResponse.data)
-        console.log(events);
+        //console.log(eonetResponse.data)
+       //console.log(events);
         console.log(singleEvent);
       
         gptContent = `${req.query.eventType}, say it is because of this natural disaster: ${singleEvent}`;

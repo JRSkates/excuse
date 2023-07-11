@@ -20,7 +20,6 @@ export default function App() {
       })
       setTypeInput('');
       const data = response.data;
-
       setExcuse(data.excuse);
       setExcuseGenerated(true);
     } catch(error) {
