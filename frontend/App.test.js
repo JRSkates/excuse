@@ -73,7 +73,7 @@ describe("App", () => {
     fireEvent.changeText(inputField, 'my sons birthday');
     // presses button
     fireEvent.press(generateExcuseButton); 
-    console.log(inputField.props);
+    //console.log(inputField.props);
     await waitFor(() => expect(inputField.props.defaultValue).toBe(""));
 
   });
@@ -105,7 +105,7 @@ describe("App", () => {
     await waitFor(() => screen.getByText('I am late'));
   
     const shareButton = screen.getByText('Share');
-    console.log(shareButton);
+    //console.log(shareButton);
   
     const shareSpy = jest.spyOn(Share, 'share');
   

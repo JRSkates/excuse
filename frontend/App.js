@@ -7,7 +7,6 @@ import {
   Share,
   KeyboardAvoidingView,
   ScrollView,
-  Switch
 } from "react-native";
 import {
   NativeBaseProvider,
@@ -17,6 +16,7 @@ import {
   Box,
   useClipboard,
   HStack,
+  Switch
 } from "native-base";
 import axios from "axios";
 
