@@ -115,6 +115,16 @@ describe("App", () => {
   
     shareSpy.mockRestore();
   });
+  it('on press, button goes into loading state, and after the excuse loads, the original button is displayed again', async () => {
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    fireEvent.press(generateExcuseButton);
+
+    expect(screen.getByText("Submitting")).toBeTruthy();
+
+    await waitFor(() => expect(screen.getByText("Generate Excuse")).toBeTruthy());
+  });
+  
 
   it('should display the copy button after an excuse is generated', async () => {
     const mockData = { excuse: "I am late"}
