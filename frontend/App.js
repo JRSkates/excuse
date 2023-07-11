@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, View, StatusBar, Share, KeyboardAvoidingView, ScrollView } from "react-native";
+import { ImageBackground, StyleSheet, View, StatusBar, Share, KeyboardAvoidingView, ScrollView, Switch} from "react-native";
 import { NativeBaseProvider, Text, Button, Input, Box } from "native-base";
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ export default function App() {
   const [excuse, setExcuse] = useState('')
   const [excuseGenerated, setExcuseGenerated] = useState(false);
   const [typeInput, setTypeInput] = useState('')
+  const [switchState, setSwitchState] = useState(false);
 
   const generateExcuse = async () => {
     try {
@@ -41,6 +42,10 @@ export default function App() {
     setTypeInput(typeInput);
   }
 
+  const toggleSwitch = () => {
+    setSwitchState(!switchState)
+  }
+
   return (
     <NativeBaseProvider >
       <ImageBackground
@@ -70,6 +75,13 @@ export default function App() {
                 defaultValue={typeInput}
               />
               <Button onPress={generateExcuse}>Generate Excuse</Button>
+                <Switch testID={'switch'}
+                  // trackColor={{false: '#767577', true: '#81b0ff'}}
+                  // thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                  // ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch}
+                />
+               
             </Box>
           </KeyboardAvoidingView>
         </ScrollView>

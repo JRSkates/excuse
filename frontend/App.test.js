@@ -1,7 +1,7 @@
 import App from "./App";
 import React from "react";
 import { jest } from '@jest/globals';
-import { Share } from "react-native";
+import { Share, SwitchChangeEvent} from "react-native";
 import {
   render,
   fireEvent,
@@ -103,6 +103,7 @@ describe("App", () => {
     await waitFor(() => screen.getByText('I am late'));
   
     const shareButton = screen.getByText('Share');
+    console.log(shareButton);
   
     const shareSpy = jest.spyOn(Share, 'share');
   
@@ -126,12 +127,13 @@ describe("App", () => {
     fireEvent.press(generateExcuseButton)
     await waitFor(() => screen.getByText('I am late'));
 
-    const toggleButton = screen.getByTestId('toggle');
+    const toggleSwitch = screen.getByTestId('switch');
 
-    fireEvent.press(toggleButton);
+    fireEvent(toggleSwitch, 'onValueChange', true);
 
-    const isToggled = await waitFor(() => screen.getByTestId('toggle').props.checked);
+    //console.log(toggleSwitch);
+    expect(toggleSwitch).toBe('test')
 
-    expect(isToggled).toBeTruthy();
+
   });
 });
