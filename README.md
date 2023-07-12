@@ -1,5 +1,9 @@
 # Excuse
 
+Introducing our innovative app, ExcuseGenie! Have you ever found yourself in a situation where you needed a clever excuse to gracefully bow out of an event? Look no further! ExcuseGenie is here to save the day. With the power of the OpenAI API, our app generates hilarious and quirky excuses tailored to your specific event. But that's not all! We've taken it a step further by incorporating real-time data from NASA's Eonet API. If you're feeling extra creative, ExcuseGenie can even weave in a fictional natural disaster to make your excuse truly unforgettable. Whether you need an excuse for a last-minute cancellation or a playful exit strategy, ExcuseGenie has got you covered. Say goodbye to awkward moments and hello to ingenious excuses with ExcuseGenie!
+
+## Installation
+
 To run the app you need to first download the dependencies using the following commands on your terminal:
 
 ```bash
@@ -8,14 +12,6 @@ npm install
 
 cd ../api
 npm install
-```
-
-## .env API Key 
-
-The OpenAI API key needs to be within a `.env` file in the api directory:
-
-```bash
-OPENAI_API_KEY="key-in-here-as-a-string"
 ```
 
 ## Visualising the app using Expo
@@ -52,3 +48,9 @@ to:
 ```
 
 replacing the x's with your local IP address. This can be found by running `npm start` and taking the IP address under the QR code listed as `Metro waiting on` between the double slashes and the colon.
+
+You will also need to sign up for an OpenAI API key. You'll need to create a `.env` file in the api directory and use this format:
+
+```bash
+OPENAI_API_KEY="key-in-here-as-a-string"
+```
