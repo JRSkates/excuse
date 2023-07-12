@@ -19,6 +19,7 @@ import {
   Switch
 } from "native-base";
 import axios from "axios";
+import * as SecureStore from 'expo-secure-store';
 
 export default function App() {
   const [excuse, setExcuse] = useState("");
@@ -47,6 +48,8 @@ export default function App() {
       const data = response.data;
       setExcuse(data.excuse);
       setExcuseGenerated(true);
+      const key = `excuse_${Date.now()}`;
+      save(key, excuse);
     } catch (error) {
       console.log(error);
       setExcuse(
@@ -86,6 +89,17 @@ export default function App() {
       setSwitchState(false);
     }
   };
+
+  async function save(key, value) {
+    await SecureStore.setItemAsync(key, value);
+    console.log("Saved successfully")
+  }
+
+  async function getValueFor(key) {
+    const res = await SecureStore.getItemAsync(key);
+    console.log(res)
+  }
+  
 
   return (
     <NativeBaseProvider>

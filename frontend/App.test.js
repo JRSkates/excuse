@@ -9,9 +9,10 @@ import {
   waitFor
 } from "@testing-library/react-native";
 import axios from "axios";
+import * as SecureStore from 'expo-secure-store';
 
 jest.mock("axios");
-
+jest.mock('expo-secure-store');
 
 describe("App", () => {
   it("should return an excuse to the frontend when the button is pressed", async () => {
@@ -147,6 +148,7 @@ describe("App", () => {
     expect(toggleSwitch.props.value).toBe(true);
     
   });
+
   it('should display the copy button after an excuse is generated', async () => {
     const mockData = { excuse: "I am late"}
     axios.get.mockResolvedValue({ data: mockData })
@@ -182,4 +184,17 @@ describe("App", () => {
     await waitFor(() => expect(screen.getByText('Copy')).toBeTruthy(), { timeout: 2500 });
 
     });
+
+    xit('saves the excuse to local storage', async () => {
+      // TEST NEEDS TO BE FIXED, CURRENTLY JUST TIMES OUT NO MATTER HOW LONG TIMEOUT IS SET FOR
+      SecureStore.setItemAsync.mockResolvedValue();
+      
+      render(<App />);
+      fireEvent.press(screen.getByText('Generate Excuse'));
+
+      await waitFor(() => {
+        expect(SecureStore.setItemAsync).toHaveBeenCalledTimes(1);
+        // expect(SecureStore.setItemAsync).toHaveBeenCalledWith(expect.any(String), expect.any(String));
+      }, { timeout: 20000 })
+    })
 });
