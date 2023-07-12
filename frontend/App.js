@@ -16,12 +16,14 @@ import {
   Box,
   useClipboard,
   HStack,
+  Switch
 } from "native-base";
 import axios from "axios";
 
 export default function App() {
   const [excuse, setExcuse] = useState("");
   const [excuseGenerated, setExcuseGenerated] = useState(false);
+  const [switchState, setSwitchState] = useState(false);
   const [typeInput, setTypeInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [copyButtonText, setCopyButtonText] = useState("Copy");
@@ -37,12 +39,12 @@ export default function App() {
         {
           params: {
             eventType: typeInput,
+            toggle: switchState
           },
         }
       );
       setTypeInput("");
       const data = response.data;
-
       setExcuse(data.excuse);
       setExcuseGenerated(true);
     } catch (error) {
@@ -75,6 +77,14 @@ export default function App() {
     setTimeout(() => {
       setCopyButtonText("Copy");
     }, 2000);
+  };
+
+  const toggleSwitch = () => {
+    if (switchState === false) {
+      setSwitchState(true);
+    } else {
+      setSwitchState(false);
+    }
   };
 
   return (
@@ -112,6 +122,10 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
+              <Switch testID={'switch'}
+                  onValueChange={toggleSwitch}
+                  value={switchState}
+                />
               <Button
                 onPress={generateExcuse}
                 isLoading={isLoading}
@@ -159,3 +173,4 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
+

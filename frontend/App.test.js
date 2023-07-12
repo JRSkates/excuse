@@ -1,16 +1,17 @@
 import App from "./App";
 import React from "react";
 import { jest } from '@jest/globals';
-import { Share } from "react-native";
+import { Share, SwitchChangeEvent} from "react-native";
 import {
   render,
   fireEvent,
   screen,
-  waitFor,
+  waitFor
 } from "@testing-library/react-native";
 import axios from "axios";
 
 jest.mock("axios");
+
 
 describe("App", () => {
   it("should return an excuse to the frontend when the button is pressed", async () => {
@@ -57,7 +58,8 @@ describe("App", () => {
 
     expect(axios.get).toHaveBeenLastCalledWith('https://excuse-s1se.onrender.com/excuse', { 
       params:{
-        eventType: 'my sons birthday'
+        eventType: 'my sons birthday',
+        "toggle": false
       }
     })
   });
@@ -71,7 +73,7 @@ describe("App", () => {
     fireEvent.changeText(inputField, 'my sons birthday');
     // presses button
     fireEvent.press(generateExcuseButton); 
-    console.log(inputField.props);
+    //console.log(inputField.props);
     await waitFor(() => expect(inputField.props.defaultValue).toBe(""));
 
   });
@@ -103,6 +105,7 @@ describe("App", () => {
     await waitFor(() => screen.getByText('I am late'));
   
     const shareButton = screen.getByText('Share');
+    //console.log(shareButton);
   
     const shareSpy = jest.spyOn(Share, 'share');
   
@@ -126,6 +129,24 @@ describe("App", () => {
   });
   
 
+  it('should toggle the toggle button', async () => {
+
+    const mockData = { excuse: "I am late"}
+    axios.get.mockResolvedValue({ data: mockData })
+
+    render(<App />);
+    const generateExcuseButton = screen.getByText('Generate Excuse');
+    
+    fireEvent.press(generateExcuseButton)
+    await waitFor(() => screen.getByText('I am late'));
+
+    const toggleSwitch = screen.getByTestId('switch');
+
+    fireEvent(toggleSwitch, 'onValueChange', true);
+
+    expect(toggleSwitch.props.value).toBe(true);
+    
+  });
   it('should display the copy button after an excuse is generated', async () => {
     const mockData = { excuse: "I am late"}
     axios.get.mockResolvedValue({ data: mockData })
