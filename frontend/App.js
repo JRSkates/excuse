@@ -16,10 +16,32 @@ import {
   Box,
   useClipboard,
   HStack,
-  Switch
+  Switch,
 } from "native-base";
 import axios from "axios";
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from "expo-secure-store";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import PastExcuses from "./src/components/PastExcuses";
+
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Home!</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+const MyTabs = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Generate Excuse" component={HomeScreen} />
+      <Tab.Screen name="Past Excuses" component={PastExcuses} />
+    </Tab.Navigator>
+  );
+};
 
 export default function App() {
   const [excuse, setExcuse] = useState("");
@@ -40,7 +62,7 @@ export default function App() {
         {
           params: {
             eventType: typeInput,
-            toggle: switchState
+            toggle: switchState,
           },
         }
       );
@@ -92,14 +114,8 @@ export default function App() {
 
   async function save(key, value) {
     await SecureStore.setItemAsync(key, value);
-    console.log("Saved successfully")
+    console.log("Saved successfully");
   }
-
-  async function getValueFor(key) {
-    const res = await SecureStore.getItemAsync(key);
-    console.log(res)
-  }
-  
 
   return (
     <NativeBaseProvider>
@@ -116,9 +132,7 @@ export default function App() {
             {excuseGenerated && (
               <View style={styles.container}>
                 <HStack space={3}>
-                  <Button onPress={shareExcuse}>
-                    Share
-                  </Button>
+                  <Button onPress={shareExcuse}>Share</Button>
                   <Button onPress={handleCopyButtonPress}>
                     {copyButtonText}
                   </Button>
@@ -136,10 +150,11 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
-              <Switch testID={'switch'}
-                  onValueChange={toggleSwitch}
-                  value={switchState}
-                />
+              <Switch
+                testID={"switch"}
+                onValueChange={toggleSwitch}
+                value={switchState}
+              />
               <Button
                 onPress={generateExcuse}
                 isLoading={isLoading}
@@ -150,6 +165,9 @@ export default function App() {
             </Box>
           </KeyboardAvoidingView>
         </ScrollView>
+        <NavigationContainer>
+          <MyTabs />
+        </NavigationContainer>
       </ImageBackground>
     </NativeBaseProvider>
   );
@@ -187,4 +205,3 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
-
