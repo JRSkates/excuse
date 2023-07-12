@@ -125,16 +125,6 @@ export default function App() {
               <Switch testID={'switch'}
                   onValueChange={toggleSwitch}
                   value={switchState}
-                  disabled={false}
-                  activeText={'On'}
-                  inActiveText={'Off'}
-                  circleSize={30}
-                  barHeight={1}
-                  circleBorderWidth={3}
-                  backgroundActive={'green'}
-                  backgroundInactive={'gray'}
-                  circleActiveColor={'#30a566'}
-                  circleInActiveColor={'#000000'}
                 />
               <Button
                 onPress={generateExcuse}
