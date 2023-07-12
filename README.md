@@ -1,6 +1,6 @@
 # Excuse
 
-Introducing our innovative app, ExcuseGenie! Have you ever found yourself in a situation where you needed a clever excuse to gracefully bow out of an event? Look no further! ExcuseGenie is here to save the day. With the power of the OpenAI API, our app generates hilarious and quirky excuses tailored to your specific event. But that's not all! We've taken it a step further by incorporating real-time data from NASA's Eonet API. If you're feeling extra creative, ExcuseGenie can even weave in a fictional natural disaster to make your excuse truly unforgettable. Whether you need an excuse for a last-minute cancellation or a playful exit strategy, ExcuseGenie has got you covered. Say goodbye to awkward moments and hello to ingenious excuses with ExcuseGenie!
+Introducing our innovative app, Excuse! Have you ever found yourself in a situation where you needed a clever excuse to gracefully bow out of an event? Look no further! Excuse is here to save the day. With the power of the OpenAI API, our app generates hilarious and quirky excuses tailored to your specific event. But that's not all! We've taken it a step further by incorporating real-time data from NASA's Eonet API. If you're feeling extra creative, Excuse can even weave in a fictional natural disaster to make your excuse truly unforgettable. Whether you need an excuse for a last-minute cancellation or a playful exit strategy, Excuse has got you covered. Say goodbye to awkward moments and hello to ingenious excuses with Excuse!
 
 ## Installation
 
