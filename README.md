@@ -23,3 +23,19 @@ In order to connect with the backend server successfully on your mobile phone us
 ```bash
 IP="http://192.x.x.x:3000"
 ```
+
+# Clear warning on Expo
+
+If you'd like to remove the SSR Provider warning when running the app on Expo, navigate to `./frontend/node_modules/native-base/src/core/NativeBaseProvider.tsx` and remove line 7 which says:
+
+```
+import { SSRProvider } from '@react-native-aria/utils';
+```
+
+and replace the following in line 97:
+
+```
+<SSRProvider>{children}</SSRProvider>
+```
+
+with simply `{children}` without the SSRProvider tags
