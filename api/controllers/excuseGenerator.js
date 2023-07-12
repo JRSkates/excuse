@@ -1,19 +1,13 @@
 require('dotenv').config();
 const axios = require('axios');
 const { Configuration, OpenAIApi } = require('openai');
+const PromptBuilder = require('../models/promptBuilder')
 
 const ExcuseController = {
   generateExcuse: async (req, res) => {
+    const promptBuilder = new PromptBuilder();
     try {
-      let gptContent = `${req.query.eventType}`
-      let messages = [
-        { role: 'system', content: `
-          You will receive a description of an event.
-          Return a fake excuse that no one would believe that the describer of the event can use to get out of it. Make it funny.
-          If you do not receive a description, please return an excuse with the same constraints which can be used for any event.
-        `},
-        { role: 'user', content: gptContent },
-      ];
+      const messages = promptBuilder.constructPrompt()
 
       if (req.query.toggle === 'true') {
         const eonetResponse = await axios.get('https://eonet.gsfc.nasa.gov/api/v3/events');
@@ -22,8 +16,6 @@ const ExcuseController = {
         //console.log(eonetResponse.data)
        //console.log(events);
         console.log(singleEvent);
-      
-        gptContent = `${req.query.eventType}, say it is because of this natural disaster: ${singleEvent}`;
       }
 
       const configuration = new Configuration({
