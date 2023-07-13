@@ -7,6 +7,7 @@ import {
   Share,
   KeyboardAvoidingView,
   ScrollView,
+  Image,
 } from "react-native";
 import {
   NativeBaseProvider,
@@ -19,6 +20,7 @@ import {
   Switch
 } from "native-base";
 import axios from "axios";
+import Hstack from "native-base/src/theme/components/hstack";
 
 export default function App() {
   const [excuse, setExcuse] = useState("");
@@ -122,10 +124,16 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
-              <Switch testID={'switch'}
+              <HStack space={4} margin={10}>
+                <Image source={require('./assets/Nasa.png')} style={{width: 50, height: 50,}} />
+                <Switch 
+                  size='md' 
+                  testID={'switch'}
                   onValueChange={toggleSwitch}
                   value={switchState}
+                  alignItems='center'
                 />
+              </HStack>
               <Button
                 onPress={generateExcuse}
                 isLoading={isLoading}
