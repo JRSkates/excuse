@@ -7,6 +7,8 @@ import {
   Share,
   KeyboardAvoidingView,
   ScrollView,
+  Image,
+  LogBox 
 } from "react-native";
 import {
   NativeBaseProvider,
@@ -16,7 +18,7 @@ import {
   Box,
   useClipboard,
   HStack,
-  Switch
+  Switch,
 } from "native-base";
 import axios from "axios";
 
@@ -100,8 +102,8 @@ export default function App() {
               <Text style={styles.excuseText}>{excuse}</Text>
             </View>
             {excuseGenerated && (
-              <View style={styles.container}>
-                <HStack space={3}>
+              <View style={styles.buttonContainer}>
+                <HStack space={8}>
                   <Button onPress={shareExcuse}>
                     Share
                   </Button>
@@ -112,8 +114,8 @@ export default function App() {
               </View>
             )}
             <Box style={styles.inputBox}>
-              <Text color="white">
-                Have a specific event you need to get out of? Describe it below!
+              <Text style={{marginBottom: 20}} color="white">
+                Have a specific event you need to get out of? Describe it below! (Optional)
               </Text>
               <Input
                 color="white"
@@ -122,11 +124,20 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
-              <Switch testID={'switch'}
+              <Text style={{color: 'white', marginTop: 20}}>Incorporate the latest natural disaster?</Text>
+              <View style={styles.nasa} margin={10}>
+                <Image source={require('./assets/Nasa.png')} style={{width: 50, height: 50, marginRight: 10}}/>
+                <Switch
+                  style={{marginLeft: 10}} 
+                  size='md' 
+                  testID={'switch'}
                   onValueChange={toggleSwitch}
                   value={switchState}
+                  alignItems='center'
                 />
+              </View>
               <Button
+                style={styles.generateButton}
                 onPress={generateExcuse}
                 isLoading={isLoading}
                 isLoadingText="Submitting"
@@ -154,7 +165,8 @@ const styles = StyleSheet.create({
   },
 
   excuseView: {
-    marginTop: "50%",
+    marginTop: "30%",
+    marginBottom: '20%',
     marginLeft: "20%",
     marginRight: "20%",
     alignItems: "center",
@@ -162,7 +174,7 @@ const styles = StyleSheet.create({
   },
 
   inputBox: {
-    marginTop: "50%",
+    marginTop: "30%",
     marginLeft: "20%",
     marginRight: "20%",
     alignItems: "center",
@@ -172,5 +184,23 @@ const styles = StyleSheet.create({
   excuseText: {
     color: "white",
   },
+
+  nasa: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: 'row',
+    marginBottom: '15%',
+    marginTop: '5%',
+  },
+
+  buttonContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
+LogBox.ignoreLogs([
+  `Constants.platform.ios.model has been deprecated in favor of expo-device's Device.modelName property. This API will be removed in SDK 45.`,
+  `Clipboard has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-clipboard/clipboard' instead of 'react-native'. See https://github.com/react-native-clipboard/clipboard`,
+  `We can not support a function callback. See Github Issues for details https://github.com/adobe/react-spectrum/issues/2320`,
+]);
