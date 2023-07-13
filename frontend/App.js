@@ -99,7 +99,7 @@ export default function App() {
         <ScrollView>
           <KeyboardAvoidingView style={styles.container} behavior="position">
             <View style={styles.excuseView}>
-              <Text style={styles.excuseText}>{excuse}</Text>
+              <Text style={styles.excuseText}>{excuse}placeholder</Text>
             </View>
             {excuseGenerated && (
               <View style={styles.container}>
@@ -115,7 +115,7 @@ export default function App() {
             )}
             <Box style={styles.inputBox}>
               <Text color="white">
-                Have a specific event you need to get out of? Describe it below!
+                Have a specific event you need to get out of? Describe it below! (Optional)
               </Text>
               <Input
                 color="white"
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
 
   excuseView: {
-    marginTop: "50%",
+    marginTop: "60%",
     marginLeft: "20%",
     marginRight: "20%",
     alignItems: "center",
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   },
 
   inputBox: {
-    marginTop: "50%",
+    marginTop: "30%",
     marginLeft: "20%",
     marginRight: "20%",
     alignItems: "center",
@@ -187,6 +187,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: 'row',
+    marginBottom: '10%',
+    marginTop: '10%'
   },
 
   generateButton: {
