@@ -99,11 +99,11 @@ export default function App() {
         <ScrollView>
           <KeyboardAvoidingView style={styles.container} behavior="position">
             <View style={styles.excuseView}>
-              <Text style={styles.excuseText}>{excuse}placeholder</Text>
+              <Text style={styles.excuseText}>{excuse}</Text>
             </View>
             {excuseGenerated && (
-              <View style={styles.container}>
-                <HStack space={3}>
+              <View style={styles.buttonContainer}>
+                <HStack space={8}>
                   <Button onPress={shareExcuse}>
                     Share
                   </Button>
@@ -114,7 +114,7 @@ export default function App() {
               </View>
             )}
             <Box style={styles.inputBox}>
-              <Text color="white">
+              <Text style={{marginBottom: 20}} color="white">
                 Have a specific event you need to get out of? Describe it below! (Optional)
               </Text>
               <Input
@@ -164,7 +164,8 @@ const styles = StyleSheet.create({
   },
 
   excuseView: {
-    marginTop: "60%",
+    marginTop: "30%",
+    marginBottom: '20%',
     marginLeft: "20%",
     marginRight: "20%",
     alignItems: "center",
@@ -187,12 +188,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: 'row',
-    marginBottom: '10%',
-    marginTop: '10%'
+    marginBottom: '15%',
+    marginTop: '15%',
   },
 
-  generateButton: {
-
+  buttonContainer: {
+    alignItems: "center",
+    justifyContent: "center",
   }
 });
 
