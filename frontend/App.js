@@ -124,17 +124,19 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
-              <HStack space={4} margin={10}>
-                <Image source={require('./assets/Nasa.png')} style={{width: 50, height: 50,}} />
-                <Switch 
+              <View style={styles.nasa} margin={10}>
+                <Image source={require('./assets/Nasa.png')} style={{width: 50, height: 50, marginRight: 10}}/>
+                <Switch
+                  style={{marginLeft: 10}} 
                   size='md' 
                   testID={'switch'}
                   onValueChange={toggleSwitch}
                   value={switchState}
                   alignItems='center'
                 />
-              </HStack>
+              </View>
               <Button
+                style={styles.generateButton}
                 onPress={generateExcuse}
                 isLoading={isLoading}
                 isLoadingText="Submitting"
@@ -180,5 +182,15 @@ const styles = StyleSheet.create({
   excuseText: {
     color: "white",
   },
+
+  nasa: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: 'row',
+  },
+
+  generateButton: {
+
+  }
 });
 
