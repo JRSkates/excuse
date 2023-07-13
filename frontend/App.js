@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
+  LogBox 
 } from "react-native";
 import {
   NativeBaseProvider,
@@ -198,3 +199,8 @@ const styles = StyleSheet.create({
   }
 });
 
+LogBox.ignoreLogs([
+  `Constants.platform.ios.model has been deprecated in favor of expo-device's Device.modelName property. This API will be removed in SDK 45.`,
+  `Clipboard has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-clipboard/clipboard' instead of 'react-native'. See https://github.com/react-native-clipboard/clipboard`,
+  `We can not support a function callback. See Github Issues for details https://github.com/adobe/react-spectrum/issues/2320`,
+]);
