@@ -1,10 +1,8 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-const ExcuseController = require('../controllers/excuseGenerator');
+const ExcuseController = require("../controllers/excuseGenerator");
 
-router.get('/',
-    ExcuseController.generateExcuse
-);
+router.get("/", ExcuseController.generateExcuse);
 
 module.exports = router;

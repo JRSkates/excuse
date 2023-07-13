@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
-  LogBox 
+  LogBox,
 } from "react-native";
 import {
   NativeBaseProvider,
@@ -34,14 +34,13 @@ export default function App() {
   const generateExcuse = async () => {
     try {
       setIsLoading(true);
-
       console.log("click");
       const response = await axios.get(
         `https://excuse-s1se.onrender.com/excuse`,
         {
           params: {
             eventType: typeInput,
-            toggle: switchState
+            toggle: switchState,
           },
         }
       );
@@ -104,9 +103,7 @@ export default function App() {
             {excuseGenerated && (
               <View style={styles.buttonContainer}>
                 <HStack space={8}>
-                  <Button onPress={shareExcuse}>
-                    Share
-                  </Button>
+                  <Button onPress={shareExcuse}>Share</Button>
                   <Button onPress={handleCopyButtonPress}>
                     {copyButtonText}
                   </Button>
@@ -114,8 +111,9 @@ export default function App() {
               </View>
             )}
             <Box style={styles.inputBox}>
-              <Text style={{marginBottom: 20}} color="white">
-                Have a specific event you need to get out of? Describe it below! (Optional)
+              <Text style={{ marginBottom: 20 }} color="white">
+                Have a specific event you need to get out of? Describe it below!
+                (Optional)
               </Text>
               <Input
                 color="white"
@@ -124,16 +122,21 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
-              <Text style={{color: 'white', marginTop: 20}}>Incorporate the latest natural disaster?</Text>
+              <Text style={{ color: "white", marginTop: 20 }}>
+                Incorporate the latest natural disaster?
+              </Text>
               <View style={styles.nasa} margin={10}>
-                <Image source={require('./assets/Nasa.png')} style={{width: 50, height: 50, marginRight: 10}}/>
+                <Image
+                  source={require("./assets/Nasa.png")}
+                  style={{ width: 50, height: 50, marginRight: 10 }}
+                />
                 <Switch
-                  style={{marginLeft: 10}} 
-                  size='md' 
-                  testID={'switch'}
+                  style={{ marginLeft: 10 }}
+                  size="md"
+                  testID={"switch"}
                   onValueChange={toggleSwitch}
                   value={switchState}
-                  alignItems='center'
+                  alignItems="center"
                 />
               </View>
               <Button
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
 
   excuseView: {
     marginTop: "30%",
-    marginBottom: '20%',
+    marginBottom: "20%",
     marginLeft: "20%",
     marginRight: "20%",
     alignItems: "center",
@@ -188,9 +191,9 @@ const styles = StyleSheet.create({
   nasa: {
     alignItems: "center",
     justifyContent: "space-between",
-    flexDirection: 'row',
-    marginBottom: '15%',
-    marginTop: '5%',
+    flexDirection: "row",
+    marginBottom: "15%",
+    marginTop: "5%",
   },
 
   buttonContainer: {
