@@ -19,7 +19,6 @@ import {
   useClipboard,
   HStack,
   Switch,
-  Tooltip
 } from "native-base";
 import axios from "axios";
 
