@@ -18,10 +18,10 @@ import {
   Box,
   useClipboard,
   HStack,
-  Switch
+  Switch,
+  Tooltip
 } from "native-base";
 import axios from "axios";
-import Hstack from "native-base/src/theme/components/hstack";
 
 export default function App() {
   const [excuse, setExcuse] = useState("");
@@ -125,6 +125,7 @@ export default function App() {
                 onChangeText={handleTextInputChange}
                 defaultValue={typeInput}
               />
+              <Text style={{color: 'white', marginTop: 20}}>Incorporate the latest natural disaster?</Text>
               <View style={styles.nasa} margin={10}>
                 <Image source={require('./assets/Nasa.png')} style={{width: 50, height: 50, marginRight: 10}}/>
                 <Switch
@@ -190,13 +191,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: 'row',
     marginBottom: '15%',
-    marginTop: '15%',
+    marginTop: '5%',
   },
 
   buttonContainer: {
     alignItems: "center",
     justifyContent: "center",
-  }
+  },
 });
 
 LogBox.ignoreLogs([
