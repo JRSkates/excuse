@@ -11,50 +11,25 @@ class PromptBuilder {
   }
   constructPrompt(excuseType = null, eonetEvent = null) {
 
-    if (excuseType != null && excuseType != "" && eonetEvent != null) {
-      let excuseContent = {
+    if (excuseType) {
+      let excuseTypePrompt = {
         role: "user",
         content:`The text delimited by triple quotes is the name or description of the event someone is trying to get out of.  Make sure to incorporate this input into the excuse.
       “”"${excuseType}”""` 
       }
-      let eonetContent = {
+      this.prompt.push(excuseTypePrompt)
+    }
+
+    if (eonetEvent) {
+      let eonetPrompt = {
         role: "user",
         content: `The text delimited by triple quotes is the name of a recent natural event. Use this natural event as PART of your excuse. For example if the input was a Volcano you could say "I can't make it because this volcano erupted". Make sure to incorporate this input into the excuse.
         “”"${eonetEvent}”“”`
       }
-      this.prompt.push(excuseContent, eonetContent)
-      console.log(this.prompt)
-    } else if (excuseType != null && excuseType != "") {
-      systemContent =
-        systemContent +
-        `\n    - As a User input, you will receive the name or description of the event someone is trying to get out of.  Make sure to incorporate this input into the excuse.`;
-      prompt = [
-        {
-          role: "system",
-          content: systemContent,
-        },
-        {
-          role: "user",
-          content: excuseType,
-        },
-      ];
-    } else if (eonetEvent != null) {
-      systemContent =
-        systemContent +
-        `\n    - As the User input, you will receive the name of a recent natural disaster. This is from NASA's EONET API. Use this natural disaster as PART of your excuse. For example if the input was a Volcano you could say "I can't make it because this volcano erupted"`;
-      prompt = [
-        {
-          role: "system",
-          content: systemContent,
-        },
-        {
-          role: "user",
-          content: eonetEvent,
-        },
-      ];
+      this.prompt.push(eonetPrompt)
     }
 
-    console.log(this.prompt);
+    // console.log(this.prompt);
     return this.prompt;
   }
 }
