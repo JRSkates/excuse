@@ -25,9 +25,12 @@ class PromptBuilder {
       this.prompt.push(eonetPrompt)
     }
 
-    // console.log(this.prompt);
+    console.log(this.prompt);
     return this.prompt;
   }
 }
 
 module.exports = PromptBuilder;
+
+// This new version of the builder allows us to scale this up 
+// a lot more effectively.
