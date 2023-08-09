@@ -18,6 +18,21 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
+ * Connect to MongoDB
+ */
+
+const mongoDbUrl =  process.env.MONGODB_URI || "mongodb://localhost:27017/excuse"
+mongoose.connect(mongoDbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+/**
  * Create HTTP server.
  */
 
@@ -91,14 +106,3 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-
-const mongoDbUrl =  process.env.MONGODB_URI || "mongodb://localhost:27017/excuse"
-mongoose.connect(mongoDbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
