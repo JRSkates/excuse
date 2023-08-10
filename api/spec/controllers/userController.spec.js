@@ -14,6 +14,27 @@ describe("/users", () => {
         .post("/users/")
         .send({email: "testemail@test.com", password: "1234", username: "testuser"})
       expect(response.statusCode).toBe(201)
+      expect(response.body.message).toBe("OK")
+    })
+
+    it("creates a new user", async () => {
+      await request(app)
+        .post("/users")
+        .send({email: "testemail@test.com", password: "1234", username: "testuser"})
+      let users = await User.find();
+      expect(users[0].email).toBe("testemail@test.com")
+      expect(users[0].username).toBe("testuser")
+      expect(users[0].password).toBe("1234")
     })
   })
-})
+
+  describe("POST, when all details are not provided", () => {
+    it("returns a 400 when no email", async () => {
+      let response = await request(app)
+        .post("/users")
+        .send({password: "1234", username: "testuser"})
+      expect(response.statusCode).toBe(400)
+      expect(response.body.message).toBe("Bad Request")
+    })
+  })
+ })
