@@ -36,5 +36,45 @@ describe("/users", () => {
       expect(response.statusCode).toBe(400)
       expect(response.body.message).toBe("Bad Request")
     })
+
+    it("returns a 400 when no password", async () => {
+      let response = await request(app)
+        .post("/users")
+        .send({email: "testemail@test.com", username: "testuser"})
+      expect(response.statusCode).toBe(400)
+      expect(response.body.message).toBe("Bad Request")
+    })
+
+    it("returns a 400 when no username", async () => {
+      let response = await request(app)
+        .post("/users")
+        .send({email: "testemail@test.com", password: "1234"})
+      expect(response.statusCode).toBe(400)
+      expect(response.body.message).toBe("Bad Request")
+    })
+
+    it("does not create a new user when there is no email", async () => {
+      await request(app)
+        .post("/users")
+        .send({ password: "1234", username: "testuser"})
+      let users = await User.find();
+      expect(users.length).toBe(0);
+    })
+
+    it("does not create a new user when there is no password", async () => {
+      await request(app)
+        .post("/users")
+        .send({ email: "testemail@test.com", username: "testuser"})
+      let users = await User.find();
+      expect(users.length).toBe(0);
+    })
+
+    it("does not create a new user when there is no username", async () => {
+      await request(app)
+        .post("/users")
+        .send({ email: "testemail@test.com", password: "1234"})
+      let users = await User.find();
+      expect(users.length).toBe(0);
+    })
   })
  })
