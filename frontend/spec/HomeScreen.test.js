@@ -1,4 +1,4 @@
-import App from "./App";
+import HomeScreen from "../src/screens/HomeScreen";
 import React from "react";
 import { jest } from "@jest/globals";
 import { Share, SwitchChangeEvent } from "react-native";
@@ -12,12 +12,12 @@ import axios from "axios";
 
 jest.mock("axios");
 
-describe("App", () => {
+describe("HomeScreen", () => {
   it("should return an excuse to the frontend when the button is pressed", async () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
 
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
 
     fireEvent.press(generateExcuseButton);
@@ -33,7 +33,7 @@ describe("App", () => {
       )
     );
 
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
 
     fireEvent.press(generateExcuseButton);
@@ -47,14 +47,14 @@ describe("App", () => {
   });
 
   it("should have an input field", () => {
-    render(<App />);
+    render(<HomeScreen />);
     const inputField = screen.getByLabelText("Excuse type input field");
 
     expect(inputField).toBeTruthy();
   });
 
   it("given some input, it should include that input in the body of the request when the button is pressed", async () => {
-    render(<App />);
+    render(<HomeScreen />);
 
     const inputField = screen.getByLabelText("Excuse type input field");
     const generateExcuseButton = screen.getByText("Generate Excuse");
@@ -75,7 +75,7 @@ describe("App", () => {
   });
 
   it("it clears the input field on button press", async () => {
-    render(<App />);
+    render(<HomeScreen />);
 
     const inputField = screen.getByLabelText("Excuse type input field");
     const generateExcuseButton = screen.getByText("Generate Excuse");
@@ -91,7 +91,7 @@ describe("App", () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
 
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
 
     fireEvent.press(generateExcuseButton);
@@ -106,7 +106,7 @@ describe("App", () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
 
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
 
     fireEvent.press(generateExcuseButton);
@@ -127,7 +127,7 @@ describe("App", () => {
     shareSpy.mockRestore();
   });
   it("on press, button goes into loading state, and after the excuse loads, the original button is displayed again", async () => {
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
     fireEvent.press(generateExcuseButton);
 
@@ -142,7 +142,7 @@ describe("App", () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
 
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
 
     fireEvent.press(generateExcuseButton);
@@ -158,7 +158,7 @@ describe("App", () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
 
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
 
     fireEvent.press(generateExcuseButton);
@@ -173,7 +173,7 @@ describe("App", () => {
     const mockData = { excuse: "I am late" };
     axios.get.mockResolvedValue({ data: mockData });
 
-    render(<App />);
+    render(<HomeScreen />);
     const generateExcuseButton = screen.getByText("Generate Excuse");
 
     fireEvent.press(generateExcuseButton);
