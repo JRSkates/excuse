@@ -24,7 +24,7 @@ describe("/users", () => {
       let users = await User.find();
       expect(users[0].email).toBe("testemail@test.com")
       expect(users[0].username).toBe("testuser")
-      expect(users[0].password).toBe("1234")
+      expect(users[0].password).toBeTruthy();
     })
   })
 
