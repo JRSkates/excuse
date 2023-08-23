@@ -22,7 +22,7 @@ import {
 } from "native-base";
 import axios from "axios";
 
-export default function HomeScreen() {
+const HomeScreen = ({ navigation }) => {  
   const [excuse, setExcuse] = useState("");
   const [excuseGenerated, setExcuseGenerated] = useState(false);
   const [switchState, setSwitchState] = useState(false);
@@ -88,6 +88,10 @@ export default function HomeScreen() {
     }
   };
 
+  const handleNavigateToSignUp = () => {
+    navigation.navigate("SignUp");
+  }
+
   return (
     <NativeBaseProvider>
       <ImageBackground
@@ -147,6 +151,7 @@ export default function HomeScreen() {
               >
                 Generate Excuse
               </Button>
+              <Button title="Go to Sign Up" onPress={handleNavigateToSignUp} />
             </Box>
           </KeyboardAvoidingView>
         </ScrollView>
@@ -154,6 +159,8 @@ export default function HomeScreen() {
     </NativeBaseProvider>
   );
 }
+
+export default HomeScreen
 
 const styles = StyleSheet.create({
   container: {
