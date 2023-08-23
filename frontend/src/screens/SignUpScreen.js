@@ -10,7 +10,7 @@ const SignUp = ({ navigation }) => {
  return(
   <NativeBaseProvider>
     <View>
-     <Text>Sign Up</Text>
+     <Text>Sign Up Here</Text>
       <Input 
         placeholder="username"
         value={username}
@@ -27,6 +27,7 @@ const SignUp = ({ navigation }) => {
         onChangeText={setPassword}
       />
     </View>
+		<Button>Sign Up</Button>
   </NativeBaseProvider>
  );
 }

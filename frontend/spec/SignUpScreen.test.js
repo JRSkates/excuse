@@ -34,4 +34,19 @@ describe("SignUpScreen", () => {
 
     expect(passwordInput).toBeTruthy();
   })
+
+	it("renders a sign up button", () => {
+    render(<SignUp />);
+
+    const signUpButton = screen.getByText("Sign Up");
+
+    expect(signUpButton).toBeTruthy();
+  })
+
+
+	xit("calls the /users endpoint", () => {
+    render(<SignUp />);
+
+		// test here
+  })
 })
