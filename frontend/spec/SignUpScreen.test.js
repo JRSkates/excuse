@@ -14,11 +14,24 @@ jest.mock("axios");
 
 describe("SignUpScreen", () => {
   it("renders username field", () => {
-    //const { getByPlaceholderText } = render(<SignUp />);
     render(<SignUp />);
 
     const usernameInput = screen.getByPlaceholderText("username");
 
     expect(usernameInput).toBeTruthy();
+  })
+  it("renders email field", () => {
+    render(<SignUp />);
+
+    const emailInput = screen.getByPlaceholderText("email");
+
+    expect(emailInput).toBeTruthy();
+  })
+  it("renders password field", () => {
+    render(<SignUp />);
+
+    const passwordInput = screen.getByPlaceholderText("password");
+
+    expect(passwordInput).toBeTruthy();
   })
 })

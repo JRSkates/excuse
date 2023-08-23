@@ -15,6 +15,16 @@ return(
       value={username}
       onChangeText={setUsername}
     />
+    <TextInput 
+      placeholder="email"
+      value={email}
+      onChangeText={setEmail}
+    />
+    <TextInput 
+      placeholder="password"
+      value={password}
+      onChangeText={setPassword}
+    />
   </View>
  )
 }
