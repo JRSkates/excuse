@@ -44,9 +44,26 @@ describe("SignUpScreen", () => {
   })
 
 
-	xit("calls the /users endpoint", () => {
+	it("should call the /users endpoint when sign up button is clicked", () => {
     render(<SignUp />);
+    axios.post.mockResolvedValue({ message: 'OK' });
 
-		// test here
+    const usernameInput = screen.getByPlaceholderText("username");
+   	const emailInput = screen.getByPlaceholderText("email");
+   	const passwordInput = screen.getByPlaceholderText("password");
+
+   	fireEvent.changeText(usernameInput, "username");
+   	fireEvent.changeText(emailInput, "email@test.com");
+   	fireEvent.changeText(passwordInput, "mypassword");
+
+   	const signUpButton = screen.getByText("Sign Up");
+   	fireEvent.press(signUpButton)
+   	expect(axios.post).toHaveBeenLastCalledWith("https://excuse-s1se.onrender.com/users",
+   	{
+     email: "email@test.com",
+     password: "mypassword",
+     username: "username"
+   })
   })
+
 })

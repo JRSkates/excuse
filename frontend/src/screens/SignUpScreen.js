@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { View, Text, Button } from "react-native"; 
 import { Input, NativeBaseProvider } from "native-base";
+import axios from "axios";
 
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+	const handleSignUp = async () => {
+		try {
+			const response = await axios.post("https://excuse-s1se.onrender.com/users",
+			{
+			email,
+			password,
+			username,
+			})
+		} catch(e) {
+			console.log(e);
+		}
+	}
  return(
   <NativeBaseProvider>
     <View>
@@ -27,7 +40,10 @@ const SignUp = ({ navigation }) => {
         onChangeText={setPassword}
       />
     </View>
-		<Button title="Sign Up">Sign Up</Button>
+		<Button 
+		title="Sign Up"
+		onPress={handleSignUp}
+		>Sign Up</Button>
   </NativeBaseProvider>
  );
 }
