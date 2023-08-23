@@ -151,7 +151,7 @@ const HomeScreen = ({ navigation }) => {
               >
                 Generate Excuse
               </Button>
-              <Button title="Go to Sign Up" onPress={handleNavigateToSignUp} />
+              <Button style={styles.generateButton} title="Go to Sign Up" onPress={handleNavigateToSignUp}> Sign Up Here!</Button> 
             </Box>
           </KeyboardAvoidingView>
         </ScrollView>
