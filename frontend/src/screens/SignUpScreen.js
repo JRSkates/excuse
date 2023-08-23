@@ -18,6 +18,8 @@ const SignUp = ({ navigation }) => {
 			})
 		} catch(e) {
 			console.log(e);
+		} finally {
+			navigation.navigate("Excuse")
 		}
 	}
  return(

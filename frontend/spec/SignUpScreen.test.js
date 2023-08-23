@@ -1,7 +1,6 @@
 import SignUp from "../src/screens/SignUpScreen";
 import React from "react";
 import { jest } from "@jest/globals";
-import { Share, SwitchChangeEvent } from "react-native";
 import {
   render,
   fireEvent,
@@ -44,8 +43,12 @@ describe("SignUpScreen", () => {
   })
 
 
-	it("should call the /users endpoint when sign up button is clicked", () => {
-    render(<SignUp />);
+	it("should call the /users endpoint when sign up button is clicked then navigates to HomeScreen", async () => {
+		const mockNavigate = jest.fn();
+    const mockNavigation = { navigate: mockNavigate };
+
+    render(<SignUp navigation={mockNavigation}/>);
+
     axios.post.mockResolvedValue({ message: 'OK' });
 
     const usernameInput = screen.getByPlaceholderText("username");
@@ -58,12 +61,17 @@ describe("SignUpScreen", () => {
 
    	const signUpButton = screen.getByText("Sign Up");
    	fireEvent.press(signUpButton)
+
    	expect(axios.post).toHaveBeenLastCalledWith("https://excuse-s1se.onrender.com/users",
    	{
      email: "email@test.com",
      password: "mypassword",
      username: "username"
    })
+
+	 await Promise.resolve()
+
+	 expect(mockNavigate).toHaveBeenLastCalledWith("Excuse")
   })
 
 })
