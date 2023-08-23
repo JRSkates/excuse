@@ -7,9 +7,11 @@ const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
 
 	const handleSignUp = async () => {
 		try {
+      setIsLoading(true);
 			const response = await axios.post("https://excuse-s1se.onrender.com/users",
 			{
 			email,
@@ -19,6 +21,7 @@ const SignUp = ({ navigation }) => {
 		} catch(e) {
 			console.log(e);
 		} finally {
+      setIsLoading(false);
 			navigation.navigate("Excuse")
 		}
 	}
@@ -53,6 +56,8 @@ const SignUp = ({ navigation }) => {
       </View>
       <View style={styles.buttonContainer}>
 		    <Button
+        isLoading={isLoading}
+        isLoadingText="Submitting"
 		    title="Sign Up"
 		    onPress={handleSignUp}
 		    >Sign Up</Button>
