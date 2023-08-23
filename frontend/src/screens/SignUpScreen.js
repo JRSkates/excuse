@@ -27,7 +27,7 @@ const SignUp = ({ navigation }) => {
         onChangeText={setPassword}
       />
     </View>
-		<Button>Sign Up</Button>
+		<Button title="Sign Up">Sign Up</Button>
   </NativeBaseProvider>
  );
 }
