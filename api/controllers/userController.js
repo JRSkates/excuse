@@ -21,7 +21,18 @@ const UsersController = {
       const user = await User.findOne({ email });
       if (!user) {
         return res.status(401).json({ message: 'User not found' });
+      } 
+
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: 'Incorrect Password' });
       }
+
+      const token = jwt.sign({userId: user._id}, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
+
+      return res.status(200).json({ token });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
