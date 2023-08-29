@@ -77,4 +77,14 @@ describe("/users", () => {
       expect(users.length).toBe(0);
     })
   })
+
+  describe("UserController - Login", () => {
+    it("should return 401 if the user is not found", async () => {
+      let response = await request(app)
+        .post('/users/login')
+        .send({ email: "notanemail@email.com", password: "test" })
+
+      expect(response.statusCode).toBe(401)
+    })
+  })
  })
