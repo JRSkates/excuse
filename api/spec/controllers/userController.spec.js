@@ -1,6 +1,7 @@
 const app = require('../../app');
 const request = require("supertest");
 require("../mongoDbHelper");
+const bcrypt = require('bcrypt');
 const User = require("../../models/userModel");
 
 describe("/users", () => {
@@ -75,6 +76,48 @@ describe("/users", () => {
         .send({ email: "testemail@test.com", password: "1234"})
       let users = await User.find();
       expect(users.length).toBe(0);
+    })
+  })
+
+  describe("UserController - Login", () => {
+    it("should return 401 if the user is not found", async () => {
+      let response = await request(app)
+        .post('/users/login')
+        .send({ email: "notanemail@email.com", password: "test" })
+
+      expect(response.statusCode).toBe(401)
+    })
+
+    it("should return 401 if the password is incorrect", async () => {
+      //const hashedPassword = await bcrypt.hash('password123', 12);
+      await User.create({
+        username: 'testuser',
+        email: 'test@example.com',
+        password: "password123",
+      });
+
+      const response = await request(app)
+        .post('/users/login')
+        .send({ email: 'test@example.com', password: 'incorrectpassword' });
+
+      expect(response.status).toBe(401);
+    })
+
+    it("should return a JWT if login is successful", async () => {
+      //const hashedPassword = await bcrypt.hash('password123', 12);
+      await User.create({
+        username: 'testuser',
+        email: 'test@example.com',
+        password: "password123",
+      });
+
+      const response = await request(app)
+        .post('/users/login')
+        .send({ email: 'test@example.com', password: 'password123' });
+
+      console.log(response.body)
+      expect(response.status).toBe(200);
+      expect(response.body.token).toBeDefined();
     })
   })
  })
