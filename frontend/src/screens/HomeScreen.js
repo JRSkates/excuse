@@ -11,7 +11,6 @@ import {
   LogBox,
 } from "react-native";
 import {
-  NativeBaseProvider,
   Text,
   Button,
   Input,
@@ -93,7 +92,6 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <NativeBaseProvider>
       <ImageBackground
         source={require("../../assets/background.png")}
         style={styles.backgroundImage}
@@ -156,7 +154,6 @@ const HomeScreen = ({ navigation }) => {
           </KeyboardAvoidingView>
         </ScrollView>
       </ImageBackground>
-    </NativeBaseProvider>
   );
 }
 

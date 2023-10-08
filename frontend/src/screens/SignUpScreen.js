@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Button, ImageBackground, StyleSheet } from "react-native"; 
-import { Input, NativeBaseProvider, VStack } from "native-base";
+import { Input, VStack } from "native-base";
 import axios from "axios";
 
 const SignUp = ({ navigation }) => {
@@ -26,7 +26,6 @@ const SignUp = ({ navigation }) => {
 		}
 	}
  return(
-  <NativeBaseProvider>
     <ImageBackground
       source={require("../../assets/background.png")}
       style={styles.backgroundImage}
@@ -63,7 +62,6 @@ const SignUp = ({ navigation }) => {
 		    >Sign Up</Button>
       </View>
     </ImageBackground>
-  </NativeBaseProvider>
  );
 }
 
